@@ -224,7 +224,6 @@ public class CafeJava {
         System.out.println("🏆 Final Score: " + score + "/" + questions + "\n");
     }
 
-
     private static String safe(String[] row, int idx) {
         return (row != null && idx >= 0 && idx < row.length && row[idx] != null) ? row[idx] : "";
     }
