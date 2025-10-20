@@ -11,8 +11,6 @@ public class CafeJava {
         System.out.println("        ☕ Welcome to Cafe Java!");
         System.out.println("=======================================\n");
 
-        List<String[]> terms = TermsLibrary.loadTerms();
-
         while (true) {
             printMainMenu();
             System.out.print("👉 Choose option: ");
@@ -20,20 +18,19 @@ public class CafeJava {
 
             switch (choice) {
                 case "1":
-                    searchByTerm(terms);
+                    searchByTerm(TermsLibrary.loadTerms());
                     break;
                 case "2":
-                    learnNewTerm(terms);
+                    learnNewTerm(TermsLibrary.loadTerms());
                     break;
                 case "3":
                     addNewTerm();
-                    terms = TermsLibrary.loadTerms();
                     break;
                 case "4":
-                    displayWorkbooks(terms);
+                    displayWorkbooks(TermsLibrary.loadTerms());
                     break;
                 case "5":
-                    startTrueFalseQuiz(terms);
+                    startTrueFalseQuiz(TermsLibrary.loadTerms());
                     break;
                 case "6":
                     System.out.println("\n👋 Thanks for visiting Cafe Java! Keep coding strong!\n");
@@ -111,6 +108,8 @@ public class CafeJava {
         String example = scanner.nextLine().trim();
 
         TermsLibrary.saveTerm(workbook, term, definition, example);
+
+        System.out.println("✅ New term added and saved successfully!");
     }
 
     // --- DISPLAY WORKBOOKS ---
@@ -139,7 +138,7 @@ public class CafeJava {
             return;
         }
 
-        // Collect workbooks
+        // Collect workbooks dynamically
         Set<String> workbooks = new TreeSet<>();
         for (String[] row : terms) {
             workbooks.add(row[0]);
@@ -156,7 +155,7 @@ public class CafeJava {
         int choice = readInt(1, workbookList.size());
         String selectedWorkbook = workbookList.get(choice - 1);
 
-        // Filter terms
+        // Filter terms by workbook
         List<String[]> selectedTerms = new ArrayList<>();
         for (String[] row : terms) {
             if (row[0].equalsIgnoreCase(selectedWorkbook)) {
@@ -182,14 +181,13 @@ public class CafeJava {
             String displayedTerm = correctTerm[1];
             String correctDef = correctTerm[2];
 
-            // Randomly decide whether to show correct or fake definition
+            // Randomly show true or false definition
             boolean isTrue = rand.nextBoolean();
             String displayedDef;
 
             if (isTrue) {
                 displayedDef = correctDef;
             } else {
-                // Pick a random fake definition
                 String[] fakeTerm = selectedTerms.get(rand.nextInt(selectedTerms.size()));
                 while (fakeTerm[1].equals(displayedTerm)) {
                     fakeTerm = selectedTerms.get(rand.nextInt(selectedTerms.size()));
@@ -206,8 +204,8 @@ public class CafeJava {
                 System.out.println("✅ Correct!");
                 score++;
             } else {
-                System.out.println("❌ Incorrect! The correct definition was:");
-                System.out.println("💡 " + correctDef);
+                System.out.println("❌ Incorrect!");
+                System.out.println("💡 Correct Definition: " + correctDef);
             }
         }
 
@@ -226,3 +224,4 @@ public class CafeJava {
         }
     }
 }
+

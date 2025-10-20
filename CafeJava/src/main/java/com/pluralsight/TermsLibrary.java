@@ -5,11 +5,12 @@ import java.util.*;
 
 public class TermsLibrary {
 
-    // Load all terms from the CSV file
+    private static final String FILE_NAME = "Cafe_Java_Library_Terms.csv";
+
+    // --- Load all terms safely ---
     public static List<String[]> loadTerms() {
         List<String[]> terms = new ArrayList<>();
-
-        File csvFile = new File("Cafe_Java_Library_Terms.csv");
+        File csvFile = new File(FILE_NAME);
 
         if (!csvFile.exists()) {
             System.out.println("⚠️ File not found: " + csvFile.getAbsolutePath());
@@ -17,21 +18,39 @@ public class TermsLibrary {
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            String header = br.readLine(); // skip header
             String line;
+            boolean isFirstLine = true;
 
             while ((line = br.readLine()) != null) {
-                String[] parts = parseCSVLine(line);
-                if (parts.length >= 4) { // Workbook, Term, Definition, Example
-                    terms.add(parts);
+                line = line.trim();
+
+                // Skip blank lines or header
+                if (line.isEmpty() || line.startsWith("Workbook,")) {
+                    continue;
                 }
+
+                // Skip header only once
+                if (isFirstLine && line.toLowerCase().contains("workbook,term")) {
+                    isFirstLine = false;
+                    continue;
+                }
+                isFirstLine = false;
+
+                String[] parts = parseCSVLine(line);
+                if (parts.length < 4) {
+                    parts = Arrays.copyOf(parts, 4);
+                }
+
+                // Skip rows with missing workbook or term names
+                if (parts[0] == null || parts[0].trim().isEmpty() ||
+                        parts[1] == null || parts[1].trim().isEmpty()) {
+                    continue;
+                }
+
+                terms.add(parts);
             }
 
-            if (terms.isEmpty()) {
-                System.out.println("⚠️ No terms loaded. Please check your CSV formatting.");
-            } else {
-                System.out.println("✅ Loaded " + terms.size() + " terms successfully.");
-            }
+            System.out.println("✅ Loaded " + terms.size() + " terms.");
 
         } catch (IOException e) {
             System.out.println("⚠️ Could not load terms: " + e.getMessage());
@@ -40,38 +59,39 @@ public class TermsLibrary {
         return terms;
     }
 
-    // Save a new term to the CSV file safely
+    // --- Save new term safely ---
     public static void saveTerm(String workbook, String term, String definition, String example) {
-        File csvFile = new File("Cafe_Java_Library_Terms.csv");
+        File csvFile = new File(FILE_NAME);
         boolean fileExists = csvFile.exists();
 
         try (FileWriter fw = new FileWriter(csvFile, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
 
-            // Add header if file didn't exist
+            // Add header if new file
             if (!fileExists) {
                 out.println("Workbook,Term,Definition,Example");
             }
 
-            // Write the term safely
-            out.printf("%s,%s,%s,%s%n",
+            // Always write 4 fields in the same order
+            String csvLine = String.join(",",
                     escapeForCSV(workbook),
                     escapeForCSV(term),
                     escapeForCSV(definition),
                     escapeForCSV(example)
             );
 
-            System.out.println("✅ Term saved successfully to " + csvFile.getName());
+            out.println(csvLine);
+            out.flush();
+
+            System.out.println("✅ Term saved successfully.");
 
         } catch (IOException e) {
             System.out.println("⚠️ Could not save term: " + e.getMessage());
         }
     }
 
-    // --- Helper Methods ---
-
-    // Parse a CSV line while respecting commas inside quotes
+    // --- Parse line safely ---
     private static String[] parseCSVLine(String line) {
         List<String> tokens = new ArrayList<>();
         StringBuilder current = new StringBuilder();
@@ -79,25 +99,24 @@ public class TermsLibrary {
 
         for (char c : line.toCharArray()) {
             if (c == '"') {
-                inQuotes = !inQuotes; // toggle quote mode
+                inQuotes = !inQuotes;
             } else if (c == ',' && !inQuotes) {
-                tokens.add(current.toString().trim());
+                tokens.add(current.toString());
                 current.setLength(0);
             } else {
                 current.append(c);
             }
         }
-
-        tokens.add(current.toString().trim()); // last field
+        tokens.add(current.toString());
         return tokens.toArray(new String[0]);
     }
 
-    // Escape commas and quotes when writing CSV lines
+    // --- Escape commas and quotes ---
     private static String escapeForCSV(String value) {
         if (value == null) return "";
         String escaped = value.replace("\"", "\"\""); // escape internal quotes
         if (escaped.contains(",") || escaped.contains("\"") || escaped.contains("\n")) {
-            escaped = "\"" + escaped + "\""; // wrap in quotes if needed
+            escaped = "\"" + escaped + "\"";
         }
         return escaped;
     }
