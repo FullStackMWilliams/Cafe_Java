@@ -106,7 +106,7 @@ Then open GitHub → click “Compare & Pull Request” to submit your update to
 
 ---
 
-# 🌟 Why I Built This
+# 👷🏾‍♂️ Why I Built This 🛠️
 
 Café Java was created as part of the Year Up United Software Development track to help students:
 
