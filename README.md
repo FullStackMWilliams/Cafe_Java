@@ -122,7 +122,7 @@ This project reflects both technical learning and professional collaboration, ju
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```plaintext
 Cafe_Java/
