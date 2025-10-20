@@ -169,5 +169,5 @@ Cafe_Java/
 
  Add difficulty levels for quizzes
 
-💬 “Keep your code brewing — every bug fixed is one sip closer to mastery!”
+## 💬 “Keep your code brewing — every bug fixed is one sip closer to mastery!”
 — Team Café Java ☕
