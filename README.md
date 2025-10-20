@@ -41,7 +41,7 @@ Java 17 or newer
 
 IntelliJ IDEA (Community Edition or Ultimate)
 
-# ▶️ Steps
+## ▶️ Steps
 
 1. Clone this repository
 
@@ -122,17 +122,6 @@ This project reflects both technical learning and professional collaboration, ju
 
 ---
 
-## 🧱 Technologies Used
-
-| Component | Description |
-|------------|--------------|
-| **Java 17+** | Main programming language |
-| **CSV File I/O** | Persistent data storage |
-| **Collections API** | Manages lists, sets, and randomization |
-| **OOP Principles** | Clean separation between UI and data logic |
-
----
-
 ## 📂 Project Structure
 
 ```plaintext
@@ -146,7 +135,18 @@ Cafe_Java/
 ````
 ---
 
-## 🧩 Troubleshooting
+# 🧱 Technologies Used
+
+| Component | Description |
+|------------|--------------|
+| **Java 17+** | Main programming language |
+| **CSV File I/O** | Persistent data storage |
+| **Collections API** | Manages lists, sets, and randomization |
+| **OOP Principles** | Clean separation between UI and data logic |
+
+---
+
+# 🧩 Troubleshooting
 
 | Problem                   | Cause                   | Solution                                                      |
 | ------------------------- | ----------------------- | ------------------------------------------------------------- |
@@ -157,7 +157,7 @@ Cafe_Java/
 
 ---
 
-## 🏁 Future Improvements
+# 🏁 Future Improvements
 
  Edit and delete existing terms
 
