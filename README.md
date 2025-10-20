@@ -58,7 +58,7 @@ git clone https://github.com/FullStackMWilliams/Cafe_Java.git
 5. Click Run ▶️ (top-right corner). The Café Java menu will appear in your terminal.
 
 ---
-# 👩🏽‍💻 Getting Started (For First-Time GitHub Users)
+# 👨🏾‍💻 Getting Started (For First-Time GitHub Users)
 
 If you’re new to Git or IntelliJ, follow these steps to collaborate smoothly.
 
