@@ -1,5 +1,5 @@
 # ☕ Café Java  
-*A Java CLI learning tool built by Year Up United students.*
+*A Java CLI learning tool built by Markus, a Year Up United students.*
 
 ---
 
