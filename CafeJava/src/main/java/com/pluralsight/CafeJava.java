@@ -156,7 +156,12 @@ public class CafeJava {
         List<String[]> wbTerms = new ArrayList<>();
         for (String[] r : terms) {
             if (r[0] != null && r[0].trim().equalsIgnoreCase(selectedWB) && r.length >= 3) {
-                wbTerms.add(r);
+                // trim fields defensively
+                String term  = (r[1] == null ? "" : r[1].trim());
+                String defin = (r[2] == null ? "" : r[2].trim());
+                if (!term.isEmpty() && !defin.isEmpty()) {
+                    wbTerms.add(new String[]{ r[0].trim(), term, defin, (r.length>3 && r[3]!=null)? r[3].trim() : "" });
+                }
             }
         }
 
@@ -172,52 +177,72 @@ public class CafeJava {
         int score = 0;
 
         System.out.println("\n=== 🧠 TRUE / FALSE QUIZ START ===");
+
         for (int q = 1; q <= questions; q++) {
             String[] correct = wbTerms.get(rand.nextInt(wbTerms.size()));
-            String term = correct[1];
+            String term       = correct[1];
             String correctDef = correct[2];
 
-            boolean showCorrect = rand.nextBoolean();
-            String shownDef = correctDef;
+            // Decide what to show
+            String shownDef;
 
-            if (!showCorrect) {
-                // choose a different definition from the same workbook
-                String[] fake;
-                do {
-                    fake = wbTerms.get(rand.nextInt(wbTerms.size()));
-                } while (fake[1].equalsIgnoreCase(term) && wbTerms.size() > 1);
-                shownDef = fake[2];
+            if (wbTerms.size() == 1) {
+                // With one term we cannot build a false statement — always show the real one
+                shownDef = correctDef;
+            } else {
+                boolean showReal = rand.nextBoolean();
+                if (showReal) {
+                    shownDef = correctDef;
+                } else {
+                    // pick a different definition
+                    String[] fake;
+                    do {
+                        fake = wbTerms.get(rand.nextInt(wbTerms.size()));
+                    } while (fake == correct || fake[2].equalsIgnoreCase(correctDef));
+                    shownDef = fake[2];
+                }
             }
 
+            // Ask
             System.out.println("\n" + q + ". " + term);
             System.out.println("💭 Definition: " + shownDef);
             System.out.print("👉 True or False? ");
             String answer = scanner.nextLine().trim().toLowerCase();
 
-            boolean correctAns = (showCorrect && answer.equals("true")) || (!showCorrect && answer.equals("false"));
-            if (correctAns) {
-                System.out.println("✅ Correct!");
+            // ✅ Grade by comparing WHAT WE SHOWED vs the CORRECT definition
+            boolean statementIsTrue = shownDef.equalsIgnoreCase(correctDef);
+            boolean userSaysTrue    = answer.startsWith("t"); // t/true/TRUE, etc.
+
+            if (userSaysTrue == statementIsTrue) {
+                System.out.println("✅ Correct!\n");
                 score++;
             } else {
-                System.out.println("❌ Incorrect. Correct definition: " + correctDef);
+                System.out.println("❌ Incorrect. Correct definition: " + correctDef + "\n");
             }
         }
 
-        System.out.println("\n🏆 Final Score: " + score + "/" + questions + "\n");
+        System.out.println("🏆 Final Score: " + score + "/" + questions + "\n");
     }
 
-    // --- Utilities ---
-    private static int readInt(int min, int max) {
-        while (true) {
-            try {
-                int n = Integer.parseInt(scanner.nextLine().trim());
-                if (n >= min && n <= max) return n;
-            } catch (Exception ignored) {}
-            System.out.print("⚠️ Enter a valid number (" + min + "–" + max + "): ");
-        }
-    }
 
     private static String safe(String[] row, int idx) {
         return (row != null && idx >= 0 && idx < row.length && row[idx] != null) ? row[idx] : "";
     }
+    // --- HELPER: Read integer input safely ---
+    private static int readInt(int min, int max) {
+        while (true) {
+            try {
+                String input = scanner.nextLine().trim();
+                int value = Integer.parseInt(input);
+                if (value >= min && value <= max) {
+                    return value;
+                } else {
+                    System.out.print("⚠️ Please enter a number between " + min + " and " + max + ": ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("⚠️ Invalid number. Try again: ");
+            }
+        }
+    }
+
 }

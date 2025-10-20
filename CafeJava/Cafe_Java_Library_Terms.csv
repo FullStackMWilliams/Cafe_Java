@@ -1,53 +1,53 @@
 Workbook,Term,Definition,Example
-Workbook 1d - Intro to Java v7.0Y,Class,Blueprint for creating objects,public class Car { String model; void drive(){} }
-Workbook 1d - Intro to Java v7.0Y,Object,Instance of a class,Car myCar = new Car();
-Workbook 1d - Intro to Java v7.0Y,Method,Block of code that performs an action,public void drive() { System.out.println(Driving); }
-Workbook 1d - Intro to Java v7.0Y,Variable,Named container to store data,int age = 25;
-Workbook 1d - Intro to Java v7.0Y,Primitive Types,"Basic types like int,double,char",double price = 9.99;
-Workbook 1d - Intro to Java v7.0Y,Reference Type,Stores the address of an object,String name = Java;
-Workbook 1d - Intro to Java v7.0Y,Constructor,Special method to initialize objects,Car(String model){ this.model = model; }
-Workbook 1d - Intro to Java v7.0Y,Inheritance,Mechanism to derive a class,class Dog extends Animal {}
-Workbook 1d - Intro to Java v7.0Y,Polymorphism,Objects can take many forms,Animal a = new Dog();
-Workbook 1d - Intro to Java v7.0Y,Encapsulation,Hiding fields and exposing methods,private int balance; public int getBalance(){ return balance; }
-Workbook 1d - Intro to Java v7.0Y,Abstraction,Hiding implementation details,abstract class Shape { abstract void draw(); }
-Workbook 1d - Intro to Java v7.0Y,Interface,Defines methods a class must implement,interface Flyable { void fly(); }
-Workbook 1d - Intro to Java v7.0Y,Package,Organizes classes and interfaces,package com.example;
-Workbook 1d - Intro to Java v7.0Y,Access Modifiers,Control visibility (public/private),private String password;
-Workbook 1d - Intro to Java v7.0Y,Static,Keyword tied to class not instance,static int count;
-Workbook 2a - Strings Loops and Arrays v7.0y,String,Immutable sequence of characters,String greeting = Hello;
-Workbook 2a - Strings Loops and Arrays v7.0y,StringBuilder,Mutable sequence of characters,StringBuilder sb = new StringBuilder(Hi); sb.append(!);
-Workbook 2a - Strings Loops and Arrays v7.0y,Array,Fixed-size container,int[] numbers = {1
-Workbook 2a - Strings Loops and Arrays v7.0y,For Loop,Repeats code a number of times,for(int i=0; i<5; i++){ System.out.println(i); }
-Workbook 2a - Strings Loops and Arrays v7.0y,While Loop,Repeats code while condition true,while(x<10){ x++; }
-Workbook 2a - Strings Loops and Arrays v7.0y,Do-While Loop,Executes code at least once,do{ x++; }while(x<10);
-Workbook 2a - Strings Loops and Arrays v7.0y,Enhanced For Loop,Iterates over arrays or collections,for(int n: numbers){ System.out.println(n); }
-Workbook 2a - Strings Loops and Arrays v7.0y,2D Array,Array of arrays,int[][] matrix = {{1
-Workbook 2a - Strings Loops and Arrays v7.0y,Split(),Splits string by delimiter,"String[] parts = str.split(,);"
-Workbook 2a - Strings Loops and Arrays v7.0y,Trim(),Removes whitespace,str.trim();
-Workbook 2a - Strings Loops and Arrays v7.0y,Length,Array size or string length,int len = arr.length;
-Workbook 2a - Strings Loops and Arrays v7.0y,IndexOf(),Index of a character,int pos = str.indexOf(a);
-Workbook 2a - Strings Loops and Arrays v7.0y,Substring(),Extracts part of a string,String sub = str.substring(0
-Workbook 2a - Strings Loops and Arrays v7.0y,Equals(),Compares string values,if(str.equals(Java)) {}
-Workbook 2a - Strings Loops and Arrays v7.0y,ArrayList,Resizable array,ArrayList<String> list = new ArrayList<>();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Exception,Event disrupting flow,try{ int x=1/0; } catch(Exception e){}
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Checked Exception,Must be declared or handled,throws IOException
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Unchecked Exception,Runtime exception,int[] arr=new int[2]; arr[5]=10;
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Try-Catch,Handles exceptions,try{ } catch(Exception e){}
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Finally,Always executes after try-catch,finally{ cleanup(); }
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Throw,Explicitly throw an exception,throw new Exception(Error);
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Throws,Declares exceptions,public void read() throws IOException
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Generics,Works with type parameters,List<String> list=new ArrayList<>();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Collections,Framework for data structures,Map<Integer
-Workbook 3a - Mastering Java Fundamentals v7.0Y,HashMap,Key-value storage,HashMap<String
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Set,Collection of unique elements,Set<Integer> nums=new HashSet<>();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Queue,FIFO collection,Queue<String> q=new LinkedList<>();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Stack,LIFO collection,Stack<Integer> stack=new Stack<>();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Lambda Expression,Compact function,(x
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Stream API,Functional style processing,list.stream().filter(x->x>10).forEach(System.out::println);
-Workbook 3a - Mastering Java Fundamentals v7.0Y,File I/O,Reading/writing files,BufferedReader br=new BufferedReader(new FileReader(file.txt));
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Serialization,Object to byte stream,ObjectOutputStream out=new ObjectOutputStream(...);
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Multithreading,Multiple threads concurrently,Thread t=new Thread(()->{}); t.start();
-Workbook 3a - Mastering Java Fundamentals v7.0Y,Synchronized,Controls thread access,synchronized void increment(){}
-Workbook 3a - Mastering Java Fundamentals v7.0Y,JVM,Executes Java bytecode,java MyProgram
-Workbook 3a - Mastering Java Fundamentals v7.0Y,JDK,Java Development Kit,javac MyProgram.java
-Workbook 3a - Mastering Java Fundamentals v7.0Y,JRE,Java Runtime Environment,java MyProgram
+Workbook 1d - Intro to Java,Class,Blueprint for creating objects,public class Car { String model; void drive(){} }
+Workbook 1d - Intro to Java,Object,Instance of a class,Car myCar = new Car();
+Workbook 1d - Intro to Java,Method,Block of code that performs an action,public void drive() { System.out.println(Driving); }
+Workbook 1d - Intro to Java,Variable,Named container to store data,int age = 25;
+Workbook 1d - Intro to Java,Primitive Types,"Basic types like int,double,char",double price = 9.99;
+Workbook 1d - Intro to Java,Reference Type,Stores the address of an object,String name = Java;
+Workbook 1d - Intro to Java,Constructor,Special method to initialize objects,Car(String model){ this.model = model; }
+Workbook 1d - Intro to Java,Inheritance,Mechanism to derive a class,class Dog extends Animal {}
+Workbook 1d - Intro to Java,Polymorphism,Objects can take many forms,Animal a = new Dog();
+Workbook 1d - Intro to Java,Encapsulation,Hiding fields and exposing methods,private int balance; public int getBalance(){ return balance; }
+Workbook 1d - Intro to Java,Abstraction,Hiding implementation details,abstract class Shape { abstract void draw(); }
+Workbook 1d - Intro to Java,Interface,Defines methods a class must implement,interface Flyable { void fly(); }
+Workbook 1d - Intro to Java,Package,Organizes classes and interfaces,package com.example;
+Workbook 1d - Intro to Java,Access Modifiers,Control visibility (public/private),private String password;
+Workbook 1d - Intro to Java,Static,Keyword tied to class not instance,static int count;
+Workbook 2a - Strings Loops and Arrays,String,Immutable sequence of characters,String greeting = Hello;
+Workbook 2a - Strings Loops and Arrays,StringBuilder,Mutable sequence of characters,StringBuilder sb = new StringBuilder(Hi); sb.append(!);
+Workbook 2a - Strings Loops and Arrays,Array,Fixed-size container,int[] numbers = {1
+Workbook 2a - Strings Loops and Arrays,For Loop,Repeats code a number of times,for(int i=0; i<5; i++){ System.out.println(i); }
+Workbook 2a - Strings Loops and Arrays,While Loop,Repeats code while condition true,while(x<10){ x++; }
+Workbook 2a - Strings Loops and Arrays,Do-While Loop,Executes code at least once,do{ x++; }while(x<10);
+Workbook 2a - Strings Loops and Arrays,Enhanced For Loop,Iterates over arrays or collections,for(int n: numbers){ System.out.println(n); }
+Workbook 2a - Strings Loops and Arrays,2D Array,Array of arrays,int[][] matrix = {{1
+Workbook 2a - Strings Loops and Arrays,Split(),Splits string by delimiter,"String[] parts = str.split(,);"
+Workbook 2a - Strings Loops and Arrays,Trim(),Removes whitespace,str.trim();
+Workbook 2a - Strings Loops and Arrays,Length,Array size or string length,int len = arr.length;
+Workbook 2a - Strings Loops and Arrays,IndexOf(),Index of a character,int pos = str.indexOf(a);
+Workbook 2a - Strings Loops and Arrays,Substring(),Extracts part of a string,String sub = str.substring(0
+Workbook 2a - Strings Loops and Arrays,Equals(),Compares string values,if(str.equals(Java)) {}
+Workbook 2a - Strings Loops and Arrays,ArrayList,Resizable array,ArrayList<String> list = new ArrayList<>();
+Workbook 3a - Mastering Java Fundamentals,Exception,Event disrupting flow,try{ int x=1/0; } catch(Exception e){}
+Workbook 3a - Mastering Java Fundamentals,Checked Exception,Must be declared or handled,throws IOException
+Workbook 3a - Mastering Java Fundamentals,Unchecked Exception,Runtime exception,int[] arr=new int[2]; arr[5]=10;
+Workbook 3a - Mastering Java Fundamentals,Try-Catch,Handles exceptions,try{ } catch(Exception e){}
+Workbook 3a - Mastering Java Fundamentals,Finally,Always executes after try-catch,finally{ cleanup(); }
+Workbook 3a - Mastering Java Fundamentals,Throw,Explicitly throw an exception,throw new Exception(Error);
+Workbook 3a - Mastering Java Fundamentals,Throws,Declares exceptions,public void read() throws IOException
+Workbook 3a - Mastering Java Fundamentals,Generics,Works with type parameters,List<String> list=new ArrayList<>();
+Workbook 3a - Mastering Java Fundamentals,Collections,Framework for data structures,Map<Integer
+Workbook 3a - Mastering Java Fundamentals,HashMap,Key-value storage,HashMap<String
+Workbook 3a - Mastering Java Fundamentals,Set,Collection of unique elements,Set<Integer> nums=new HashSet<>();
+Workbook 3a - Mastering Java Fundamentals,Queue,FIFO collection,Queue<String> q=new LinkedList<>();
+Workbook 3a - Mastering Java Fundamentals,Stack,LIFO collection,Stack<Integer> stack=new Stack<>();
+Workbook 3a - Mastering Java Fundamentals,Lambda Expression,Compact function,(x
+Workbook 3a - Mastering Java Fundamentals,Stream API,Functional style processing,list.stream().filter(x->x>10).forEach(System.out::println);
+Workbook 3a - Mastering Java Fundamentals,File I/O,Reading/writing files,BufferedReader br=new BufferedReader(new FileReader(file.txt));
+Workbook 3a - Mastering Java Fundamentals,Serialization,Object to byte stream,ObjectOutputStream out=new ObjectOutputStream(...);
+Workbook 3a - Mastering Java Fundamentals,Multithreading,Multiple threads concurrently,Thread t=new Thread(()->{}); t.start();
+Workbook 3a - Mastering Java Fundamentals,Synchronized,Controls thread access,synchronized void increment(){}
+Workbook 3a - Mastering Java Fundamentals,JVM,Executes Java bytecode,java MyProgram
+Workbook 3a - Mastering Java Fundamentals,JDK,Java Development Kit,javac MyProgram.java
+Workbook 3a - Mastering Java Fundamentals,JRE,Java Runtime Environment,java MyProgram
