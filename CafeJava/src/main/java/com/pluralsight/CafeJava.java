@@ -27,16 +27,16 @@ public class CafeJava {
                     break;
                 case "3":
                     addNewTerm();
-                    terms = TermsLibrary.loadTerms(); // reload after adding
+                    terms = TermsLibrary.loadTerms();
                     break;
                 case "4":
                     displayWorkbooks(terms);
                     break;
                 case "5":
-                    startQuiz(terms);
+                    startTrueFalseQuiz(terms);
                     break;
                 case "6":
-                    System.out.println("\n👋 Thanks for visiting Cafe Java! See you next study session!\n");
+                    System.out.println("\n👋 Thanks for visiting Cafe Java! Keep coding strong!\n");
                     return;
                 default:
                     System.out.println("⚠️ Invalid option. Please try again.\n");
@@ -44,7 +44,7 @@ public class CafeJava {
         }
     }
 
-    // --- MENU DESIGN ---
+    // --- MENU ---
     private static void printMainMenu() {
         System.out.println("""
                 ===  📚 Cafe Java Menu  ===
@@ -52,12 +52,12 @@ public class CafeJava {
                 2️⃣  📘 Learn New Term
                 3️⃣  ➕ Add a New Term
                 4️⃣  📂 Display Workbooks
-                5️⃣  🧠 Start Quiz
+                5️⃣  🧠 Start True/False Quiz
                 6️⃣  🚪 Exit
                 """);
     }
 
-    // --- SEARCH BY TERM ---
+    // --- SEARCH ---
     private static void searchByTerm(List<String[]> terms) {
         System.out.print("\n🔎 Enter a term to search: ");
         String search = scanner.nextLine().trim().toLowerCase();
@@ -66,7 +66,7 @@ public class CafeJava {
         for (String[] row : terms) {
             if (row[1].toLowerCase().contains(search)) {
                 System.out.println("\n📖 Workbook: " + row[0]);
-                System.out.println("📌 Term: " + row[1]);
+                System.out.println("📘 Term: " + row[1]);
                 System.out.println("💡 Definition: " + row[2]);
                 System.out.println("🧠 Example: " + row[3] + "\n");
                 found = true;
@@ -78,7 +78,7 @@ public class CafeJava {
         }
     }
 
-    // --- LEARN NEW TERM ---
+    // --- LEARN RANDOM TERM ---
     private static void learnNewTerm(List<String[]> terms) {
         if (terms.isEmpty()) {
             System.out.println("⚠️ No terms available yet! Add some first.");
@@ -94,7 +94,7 @@ public class CafeJava {
         System.out.println("🧠 Example: " + randomTerm[3] + "\n");
     }
 
-    // --- ADD NEW TERM ---
+    // --- ADD TERM ---
     private static void addNewTerm() {
         System.out.println("\n➕ Add a New Term");
 
@@ -132,14 +132,14 @@ public class CafeJava {
         System.out.println();
     }
 
-    // --- START QUIZ ---
-    private static void startQuiz(List<String[]> terms) {
+    // --- TRUE/FALSE QUIZ ---
+    private static void startTrueFalseQuiz(List<String[]> terms) {
         if (terms.isEmpty()) {
-            System.out.println("⚠️ No terms available to quiz on!");
+            System.out.println("⚠️ No terms available for quiz!");
             return;
         }
 
-        // Get workbook list
+        // Collect workbooks
         Set<String> workbooks = new TreeSet<>();
         for (String[] row : terms) {
             workbooks.add(row[0]);
@@ -172,31 +172,50 @@ public class CafeJava {
         System.out.print("🧮 How many questions? (1–" + selectedTerms.size() + "): ");
         int numQuestions = readInt(1, selectedTerms.size());
 
-        Collections.shuffle(selectedTerms);
+        Random rand = new Random();
         int score = 0;
 
+        System.out.println("\n=== 🧠 TRUE / FALSE QUIZ START ===");
+
         for (int q = 0; q < numQuestions; q++) {
-            String[] t = selectedTerms.get(q);
-            String term = t[1];
-            String def = t[2];
-            String ex = t[3];
+            String[] correctTerm = selectedTerms.get(rand.nextInt(selectedTerms.size()));
+            String displayedTerm = correctTerm[1];
+            String correctDef = correctTerm[2];
 
-            System.out.println("\n❓ " + (q + 1) + ". What does \"" + term + "\" mean?");
-            System.out.print("💭 Your answer: ");
-            scanner.nextLine(); // user input ignored for simplicity
+            // Randomly decide whether to show correct or fake definition
+            boolean isTrue = rand.nextBoolean();
+            String displayedDef;
 
-            System.out.println("💡 Definition: " + def);
-            System.out.println("🧠 Example: " + ex);
+            if (isTrue) {
+                displayedDef = correctDef;
+            } else {
+                // Pick a random fake definition
+                String[] fakeTerm = selectedTerms.get(rand.nextInt(selectedTerms.size()));
+                while (fakeTerm[1].equals(displayedTerm)) {
+                    fakeTerm = selectedTerms.get(rand.nextInt(selectedTerms.size()));
+                }
+                displayedDef = fakeTerm[2];
+            }
 
-            System.out.print("✅ Did you get it right? (y/n): ");
-            if (scanner.nextLine().trim().equalsIgnoreCase("y")) score++;
+            System.out.println("\n" + (q + 1) + ". " + displayedTerm);
+            System.out.println("💭 Definition: " + displayedDef);
+            System.out.print("👉 True or False? ");
+            String answer = scanner.nextLine().trim().toLowerCase();
+
+            if ((answer.equals("true") && isTrue) || (answer.equals("false") && !isTrue)) {
+                System.out.println("✅ Correct!");
+                score++;
+            } else {
+                System.out.println("❌ Incorrect! The correct definition was:");
+                System.out.println("💡 " + correctDef);
+            }
         }
 
-        System.out.println("\n🏁 Quiz Complete!");
-        System.out.println("⭐ Score: " + score + "/" + numQuestions + "\n");
+        System.out.println("\n🏁 Quiz complete!");
+        System.out.println("⭐ Final Score: " + score + "/" + numQuestions + "\n");
     }
 
-    // --- Utility: Safe integer input ---
+    // --- Utility for integer input ---
     private static int readInt(int min, int max) {
         while (true) {
             try {
