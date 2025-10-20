@@ -58,11 +58,11 @@ git clone https://github.com/FullStackMWilliams/Cafe_Java.git
 5. Click Run ▶️ (top-right corner). The Café Java menu will appear in your terminal.
 
 ---
-## 👩🏽‍💻 Getting Started (For First-Time GitHub Users)
+# 👩🏽‍💻 Getting Started (For First-Time GitHub Users)
 
 If you’re new to Git or IntelliJ, follow these steps to collaborate smoothly.
 
-# 1️⃣ Set Up GitHub & IntelliJ
+## 1️⃣ Set Up GitHub & IntelliJ
 
 - Create a GitHub account: https://github.com/join
 
@@ -70,7 +70,7 @@ If you’re new to Git or IntelliJ, follow these steps to collaborate smoothly.
 
 - Install IntelliJ IDEA (Community): https://www.jetbrains.com/idea/download
 
-# 2️⃣ Clone the Project (from IntelliJ)
+## 2️⃣ Clone the Project (from IntelliJ)
 
 - IntelliJ → Get from VCS → paste:
 ```java
@@ -79,25 +79,25 @@ https://github.com/FullStackMWilliams/Cafe_Java.git
 
 - Click Clone (project opens automatically).
 
-# 3️⃣ Make Your Own Branch
+## 3️⃣ Make Your Own Branch
 ```java
 git checkout -b yourname-update
 ```
 
 Keep your changes separate and easy to review.
 
-# 4️⃣ Add or Update Terms
+## 4️⃣ Add or Update Terms
 
 Run the app → choose 3 ➕ Add a New Term.
 Your data is saved to Cafe_Java_Library_Terms.csv.
 
-# 5️⃣ Save Your Changes
+## 5️⃣ Save Your Changes
 ```java
 git add .
 git commit -m "Added new term: Polymorphism"
 ```
 
-# 6️⃣ Push to GitHub
+## 6️⃣ Push to GitHub
 ```java
 git push origin yourname-update
 ```
