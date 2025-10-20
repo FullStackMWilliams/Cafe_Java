@@ -10,7 +10,7 @@ It uses a CSV file as a shared **term library**, allowing everyone in the Year U
 
 ---
 
-## 💡 Features
+# 💡 Features
 
 - ✅ **Search by Term** – Instantly look up any Java term.  
 - ✅ **Learn a New Term** – Get a random Java concept to review.  
@@ -106,6 +106,22 @@ Then open GitHub → click “Compare & Pull Request” to submit your update to
 
 ---
 
+# 🌟 Why I Built This
+
+Café Java was created as part of the Year Up United Software Development track to help students:
+
+Learn core Java concepts interactively
+
+Collaborate using Git & version control
+
+Practice file I/O and data persistence
+
+Strengthen teamwork through shared code contributions
+
+This project reflects both technical learning and professional collaboration, just like real-world software teams.
+
+---
+
 ## 🧱 Technologies Used
 
 | Component | Description |
@@ -128,21 +144,6 @@ Cafe_Java/
 ├── Cafe_Java_Library_Terms.csv    # Shared term database
 └── README.md                      # Project documentation
 ````
-
-# 🌟 Why I Built This
-
-Café Java was created as part of the Year Up United Software Development track to help students:
-
-Learn core Java concepts interactively
-
-Collaborate using Git & version control
-
-Practice file I/O and data persistence
-
-Strengthen teamwork through shared code contributions
-
-This project reflects both technical learning and professional collaboration, just like real-world software teams.
-
 ---
 
 ## 🧩 Troubleshooting
