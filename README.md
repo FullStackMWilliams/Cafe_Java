@@ -171,3 +171,15 @@ Cafe_Java/
 
 ## 💬 “Keep your code brewing — every bug fixed is one sip closer to mastery!”
 — Team Café Java ☕
+
+---
+## Screenshots 
+
+<img width="1919" height="1126" alt="Screenshot 2025-10-20 172253" src="https://github.com/user-attachments/assets/992340a6-1e2b-4b8d-9a48-9df6b9a81f0f" />
+<img width="1916" height="1126" alt="Screenshot 2025-10-20 170245" src="https://github.com/user-attachments/assets/fb42234a-8f35-44e4-be94-e5d48a6e789d" />
+<img width="1919" height="1127" alt="Screenshot 2025-10-20 170042" src="https://github.com/user-attachments/assets/31de5473-0081-4018-a658-a9976b9f2e0d" />
+<img width="1914" height="1130" alt="Screenshot 2025-10-20 145800" src="https://github.com/user-attachments/assets/7f96f45c-2d80-4c55-bd16-5c38edfb19d7" />
+<img width="1919" height="1129" alt="Screenshot 2025-10-20 165438" src="https://github.com/user-attachments/assets/ef4a45c6-4397-425e-9d71-08794f361cfc" />
+<img width="1919" height="1130" alt="Screenshot 2025-10-20 165800" src="https://github.com/user-attachments/assets/eb7e084a-3adb-4351-a9ec-93038f963b08" />
+<img width="1918" height="1129" alt="Screenshot 2025-10-20 165625" src="https://github.com/user-attachments/assets/cee0954c-9efb-4dd8-b43e-3ae190270fa9" />
+<img width="1919" height="1128" alt="Screenshot 2025-10-20 173151" src="https://github.com/user-attachments/assets/65e0af55-f07d-4b9e-a05e-a24a4f28f509" />
