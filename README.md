@@ -1,7 +1,45 @@
-# Cafe_Java
+# ☕ Café Java  
+*A Java CLI learning tool built by Year Up United students.*
 
-<img width="1919" height="1129" alt="Screenshot 2025-10-19 231609" src="https://github.com/user-attachments/assets/6fd938de-e568-4344-b45a-3828cd7e4dd3" />
-<img width="1919" height="1125" alt="Screenshot 2025-10-19 232242" src="https://github.com/user-attachments/assets/f7921f2f-f37a-480f-b4fc-cbbb1200812f" />
-<img width="1919" height="1127" alt="Screenshot 2025-10-19 232434" src="https://github.com/user-attachments/assets/67e3be56-a1d0-4bdc-a047-735077f81833" />
-<img width="1919" height="1127" alt="Screenshot 2025-10-19 232652" src="https://github.com/user-attachments/assets/0d1b6e89-9dbc-49d0-81a0-2ac5869dee90" />
-<img width="1917" height="1128" alt="Screenshot 2025-10-19 232947" src="https://github.com/user-attachments/assets/7c7c2169-8e17-42d1-af45-5638e9bed68c" />
+---
+
+## 🧭 Overview
+
+**Café Java** is an interactive command-line application that helps students learn and quiz themselves on key Java terms.  
+It uses a CSV file as a shared **term library**, allowing everyone in the Year Up United program to add new terms, definitions, and examples to grow the knowledge base together.
+
+---
+
+## 💡 Features
+
+- ✅ **Search by Term** – Instantly look up any Java term.  
+- ✅ **Learn a New Term** – Get a random Java concept to review.  
+- ✅ **Add a New Term** – Contribute to the shared CSV library.  
+- ✅ **Display Workbooks** – View organized “workbooks” of topics.  
+- ✅ **True/False Quiz** – Test your Java knowledge interactively.  
+- ✅ **Persistent CSV Storage** – All terms are saved in `Cafe_Java_Library_Terms.csv`.  
+
+---
+
+## 🧱 Technologies Used
+
+| Component | Description |
+|------------|--------------|
+| **Java 17+** | Main programming language |
+| **CSV File I/O** | Persistent data storage |
+| **Collections API** | Manages lists, sets, and randomization |
+| **OOP Principles** | Clean separation between UI and data logic |
+
+---
+
+## 📂 Project Structure
+
+```plaintext
+Cafe_Java/
+├── src/
+│   └── main/java/com/pluralsight/
+│       ├── CafeJava.java          # Main application (menu & logic)
+│       └── TermsLibrary.java      # Handles reading/writing to CSV
+├── Cafe_Java_Library_Terms.csv    # Shared term database
+└── README.md                      # Project documentation
+
