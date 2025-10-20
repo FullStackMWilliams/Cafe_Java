@@ -1,191 +1,209 @@
 package com.pluralsight;
 
 import java.util.*;
-import java.io.*;
 
-/**
- * ☕ Cafe Java (Refactored)
- * ---------------------------------------------------------
- * A CLI learning tool for Java terms sourced from a CSV file.
- * Uses TermsLibrary to load terms consistently.
- * Features:
- *  1. Search for term definitions
- *  2. Learn a random term
- *  3. Add new term
- *  4. Display workbook contents
- *  5. Start a quiz (True/False)
- */
 public class CafeJava {
 
-    private static final Scanner in = new Scanner(System.in);
-    private static final String FILE_NAME = "Cafe_Java_Library_Terms.csv";
-    private static final Random random = new Random();
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ensureFile();
+        System.out.println("\n=======================================");
+        System.out.println("        ☕ Welcome to Cafe Java!");
+        System.out.println("=======================================\n");
+
+        List<String[]> terms = TermsLibrary.loadTerms();
 
         while (true) {
-            System.out.println("\n=== ☕ Cafe Java Menu ===");
-            System.out.println("1. 🔍 Search by Term");
-            System.out.println("2. 📖 Learn New Term");
-            System.out.println("3. ➕ Add a New Term");
-            System.out.println("4. 📂 Display Workbook");
-            System.out.println("5. 📝 Start Quiz");
-            System.out.println("6. 🚪 Exit");
-            System.out.print("👉 Choose an option: ");
-            String choice = in.nextLine();
+            printMainMenu();
+            System.out.print("👉 Choose option: ");
+            String choice = scanner.nextLine().trim();
 
             switch (choice) {
-                case "1" -> searchTerm();
-                case "2" -> learnTerm();
-                case "3" -> addTerm();
-                case "4" -> displayWorkbook();
-                case "5" -> startQuiz();
-                case "6" -> {
-                    System.out.println("👋 Goodbye and happy coding!");
+                case "1":
+                    searchByTerm(terms);
+                    break;
+                case "2":
+                    learnNewTerm(terms);
+                    break;
+                case "3":
+                    addNewTerm();
+                    terms = TermsLibrary.loadTerms(); // reload after adding
+                    break;
+                case "4":
+                    displayWorkbooks(terms);
+                    break;
+                case "5":
+                    startQuiz(terms);
+                    break;
+                case "6":
+                    System.out.println("\n👋 Thanks for visiting Cafe Java! See you next study session!\n");
                     return;
-                }
-                default -> System.out.println("⚠️ Invalid choice. Try again.");
+                default:
+                    System.out.println("⚠️ Invalid option. Please try again.\n");
             }
         }
     }
 
-    // ✅ Ensure CSV exists
-    private static void ensureFile() {
-        File file = new File(FILE_NAME);
-        if (!file.exists()) {
-            try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
-                pw.println("Workbook|Term|Definition|Example");
-            } catch (IOException e) {
-                System.out.println("❌ Error creating CSV: " + e.getMessage());
-            }
-        }
+    // --- MENU DESIGN ---
+    private static void printMainMenu() {
+        System.out.println("""
+                ===  📚 Cafe Java Menu  ===
+                1️⃣  🔍 Search by Term
+                2️⃣  📘 Learn New Term
+                3️⃣  ➕ Add a New Term
+                4️⃣  📂 Display Workbooks
+                5️⃣  🧠 Start Quiz
+                6️⃣  🚪 Exit
+                """);
     }
 
-    // 🔍 Search by term
-    private static void searchTerm() {
-        List<String[]> terms = TermsLibrary.loadTerms();
-        System.out.print("🔎 Enter term to search: ");
-        String query = in.nextLine().trim();
+    // --- SEARCH BY TERM ---
+    private static void searchByTerm(List<String[]> terms) {
+        System.out.print("\n🔎 Enter a term to search: ");
+        String search = scanner.nextLine().trim().toLowerCase();
 
         boolean found = false;
-        for (String[] t : terms) {
-            if (t[1].equalsIgnoreCase(query)) {
-                System.out.println("✅ " + t[1] + " → " + t[2]);
-                if (t.length > 3 && !t[3].isEmpty()) {
-                    System.out.println("📌 Example: " + t[3]);
-                }
+        for (String[] row : terms) {
+            if (row[1].toLowerCase().contains(search)) {
+                System.out.println("\n📖 Workbook: " + row[0]);
+                System.out.println("📌 Term: " + row[1]);
+                System.out.println("💡 Definition: " + row[2]);
+                System.out.println("🧠 Example: " + row[3] + "\n");
                 found = true;
             }
         }
-        if (!found) System.out.println("⚠️ Term not found.");
+
+        if (!found) {
+            System.out.println("⚠️ No matches found for '" + search + "'.");
+        }
     }
 
-    // 📖 Learn a random term
-    private static void learnTerm() {
-        List<String[]> terms = TermsLibrary.loadTerms();
+    // --- LEARN NEW TERM ---
+    private static void learnNewTerm(List<String[]> terms) {
         if (terms.isEmpty()) {
-            System.out.println("⚠️ No terms found in the library.");
+            System.out.println("⚠️ No terms available yet! Add some first.");
             return;
         }
 
-        String[] randomTerm = terms.get(random.nextInt(terms.size()));
-        System.out.println("\n📘 From " + randomTerm[0] + ": " + randomTerm[1] + " → " + randomTerm[2]);
-        if (randomTerm.length > 3 && !randomTerm[3].isEmpty()) {
-            System.out.println("📌 Example: " + randomTerm[3]);
-        }
+        Random rand = new Random();
+        String[] randomTerm = terms.get(rand.nextInt(terms.size()));
+
+        System.out.println("\n🎓 Random Term from " + randomTerm[0] + ":");
+        System.out.println("📘 " + randomTerm[1]);
+        System.out.println("💡 " + randomTerm[2]);
+        System.out.println("🧠 Example: " + randomTerm[3] + "\n");
     }
 
-    // ➕ Add a new term
-    private static void addTerm() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(FILE_NAME, true))) {
-            System.out.print("📚 Workbook: ");
-            String workbook = in.nextLine().trim();
+    // --- ADD NEW TERM ---
+    private static void addNewTerm() {
+        System.out.println("\n➕ Add a New Term");
 
-            System.out.print("📖 Term: ");
-            String term = in.nextLine().trim();
+        System.out.print("📚 Workbook name: ");
+        String workbook = scanner.nextLine().trim();
 
-            System.out.print("✏️ Definition: ");
-            String def = in.nextLine().trim();
+        System.out.print("📘 Term: ");
+        String term = scanner.nextLine().trim();
 
-            System.out.print("📌 Example (optional): ");
-            String example = in.nextLine().trim();
+        System.out.print("💡 Definition: ");
+        String definition = scanner.nextLine().trim();
 
-            pw.println(workbook + "|" + term + "|" + def + "|" + example);
-            System.out.println("✅ Term added successfully!");
-        } catch (IOException e) {
-            System.out.println("❌ Could not write term: " + e.getMessage());
-        }
+        System.out.print("🧠 Example: ");
+        String example = scanner.nextLine().trim();
+
+        TermsLibrary.saveTerm(workbook, term, definition, example);
     }
 
-    // 📂 Display terms by workbook
-    private static void displayWorkbook() {
-        List<String[]> terms = TermsLibrary.loadTerms();
-        System.out.print("📚 Enter workbook name: ");
-        String workbook = in.nextLine().trim();
-
-        System.out.println("\n📂 Terms from " + workbook + ":");
-        boolean found = false;
-        for (String[] t : terms) {
-            if (t[0].equalsIgnoreCase(workbook)) {
-                System.out.println(" - " + t[1] + " → " + t[2]);
-                if (t.length > 3 && !t[3].isEmpty()) {
-                    System.out.println("   📌 Example: " + t[3]);
-                }
-                found = true;
-            }
-        }
-        if (!found) System.out.println("⚠️ No terms found in this workbook.");
-    }
-
-    // 🧠 Quiz: True/False based on random definitions
-    private static void startQuiz() {
-        List<String[]> terms = TermsLibrary.loadTerms();
-
-        if (terms.size() < 2) {
-            System.out.println("⚠️ Not enough terms for a quiz. Add more terms first.");
+    // --- DISPLAY WORKBOOKS ---
+    private static void displayWorkbooks(List<String[]> terms) {
+        if (terms.isEmpty()) {
+            System.out.println("⚠️ No workbooks to display.");
             return;
         }
 
-        int questions = 0;
-        while (questions <= 0 || questions > terms.size()) {
-            System.out.print("🧠 How many questions? (1-" + terms.size() + "): ");
-            try {
-                questions = Integer.parseInt(in.nextLine());
-                if (questions <= 0 || questions > terms.size()) {
-                    System.out.println("⚠️ Enter a valid number between 1 and " + terms.size());
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("⚠️ Please enter a valid number.");
+        Set<String> workbooks = new TreeSet<>();
+        for (String[] row : terms) {
+            workbooks.add(row[0]);
+        }
+
+        System.out.println("\n📂 Workbooks Available:");
+        for (String workbook : workbooks) {
+            System.out.println("   - " + workbook);
+        }
+        System.out.println();
+    }
+
+    // --- START QUIZ ---
+    private static void startQuiz(List<String[]> terms) {
+        if (terms.isEmpty()) {
+            System.out.println("⚠️ No terms available to quiz on!");
+            return;
+        }
+
+        // Get workbook list
+        Set<String> workbooks = new TreeSet<>();
+        for (String[] row : terms) {
+            workbooks.add(row[0]);
+        }
+
+        System.out.println("\n🧠 Choose a workbook to quiz from:");
+        int i = 1;
+        List<String> workbookList = new ArrayList<>(workbooks);
+        for (String wb : workbookList) {
+            System.out.println(" " + i++ + ". " + wb);
+        }
+
+        System.out.print("📘 Enter number: ");
+        int choice = readInt(1, workbookList.size());
+        String selectedWorkbook = workbookList.get(choice - 1);
+
+        // Filter terms
+        List<String[]> selectedTerms = new ArrayList<>();
+        for (String[] row : terms) {
+            if (row[0].equalsIgnoreCase(selectedWorkbook)) {
+                selectedTerms.add(row);
             }
         }
 
+        if (selectedTerms.isEmpty()) {
+            System.out.println("⚠️ No terms in that workbook yet.");
+            return;
+        }
+
+        System.out.print("🧮 How many questions? (1–" + selectedTerms.size() + "): ");
+        int numQuestions = readInt(1, selectedTerms.size());
+
+        Collections.shuffle(selectedTerms);
         int score = 0;
-        for (int i = 0; i < questions; i++) {
-            String[] term = terms.get(random.nextInt(terms.size()));
-            String correctDef = term[2];
 
-            String[] randomDefTerm = terms.get(random.nextInt(terms.size()));
-            String randomDef = randomDefTerm[2];
+        for (int q = 0; q < numQuestions; q++) {
+            String[] t = selectedTerms.get(q);
+            String term = t[1];
+            String def = t[2];
+            String ex = t[3];
 
-            boolean showCorrect = random.nextBoolean();
-            String shownDef = showCorrect ? correctDef : randomDef;
+            System.out.println("\n❓ " + (q + 1) + ". What does \"" + term + "\" mean?");
+            System.out.print("💭 Your answer: ");
+            scanner.nextLine(); // user input ignored for simplicity
 
-            System.out.println("\nQ" + (i + 1) + ": Does this definition match the term \"" + term[1] + "\"?");
-            System.out.println("👉 " + shownDef);
-            System.out.print("(true/false): ");
-            String answer = in.nextLine().trim().toLowerCase();
+            System.out.println("💡 Definition: " + def);
+            System.out.println("🧠 Example: " + ex);
 
-            boolean correct = (showCorrect && answer.equals("true")) || (!showCorrect && answer.equals("false"));
-            if (correct) {
-                System.out.println("✅ Correct!");
-                score++;
-            } else {
-                System.out.println("❌ Incorrect. Correct definition: " + correctDef);
-            }
+            System.out.print("✅ Did you get it right? (y/n): ");
+            if (scanner.nextLine().trim().equalsIgnoreCase("y")) score++;
         }
 
-        System.out.println("\n🏆 Final Score: " + score + "/" + questions);
+        System.out.println("\n🏁 Quiz Complete!");
+        System.out.println("⭐ Score: " + score + "/" + numQuestions + "\n");
+    }
+
+    // --- Utility: Safe integer input ---
+    private static int readInt(int min, int max) {
+        while (true) {
+            try {
+                int num = Integer.parseInt(scanner.nextLine().trim());
+                if (num >= min && num <= max) return num;
+            } catch (Exception ignored) {}
+            System.out.print("⚠️ Enter a valid number (" + min + "–" + max + "): ");
+        }
     }
 }
-

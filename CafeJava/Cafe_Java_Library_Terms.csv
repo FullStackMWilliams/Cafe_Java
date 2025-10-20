@@ -3,7 +3,7 @@ Workbook 1d - Intro to Java v7.0Y,Class,Blueprint for creating objects,public cl
 Workbook 1d - Intro to Java v7.0Y,Object,Instance of a class,Car myCar = new Car();
 Workbook 1d - Intro to Java v7.0Y,Method,Block of code that performs an action,public void drive() { System.out.println("Driving"); }
 Workbook 1d - Intro to Java v7.0Y,Variable,Named container to store data,int age = 25;
-Workbook 1d - Intro to Java v7.0Y,Primitive Types,Basic types like int,double,char,double price = 9.99;
+Workbook 1d - Intro to Java v7.0Y,Primitive Types,"Basic types like int,double,char",double price = 9.99;
 Workbook 1d - Intro to Java v7.0Y,Reference Type,Stores the address of an object,String name = "Java";
 Workbook 1d - Intro to Java v7.0Y,Constructor,Special method to initialize objects,Car(String model){ this.model = model; }
 Workbook 1d - Intro to Java v7.0Y,Inheritance,Mechanism to derive a class,class Dog extends Animal {}
@@ -53,3 +53,5 @@ Workbook 3a - Mastering Java Fundamentals v7.0Y,Synchronized,Controls thread acc
 Workbook 3a - Mastering Java Fundamentals v7.0Y,JVM,Executes Java bytecode,java MyProgram
 Workbook 3a - Mastering Java Fundamentals v7.0Y,JDK,Java Development Kit,javac MyProgram.java
 Workbook 3a - Mastering Java Fundamentals v7.0Y,JRE,Java Runtime Environment,java MyProgram
+
+workbookYUU,welcome,this is how you add a definition,happy learning
