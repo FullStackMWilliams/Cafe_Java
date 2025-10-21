@@ -238,7 +238,7 @@ Café Java is an open-source, command-line learning companion that helps student
 Built by Markus Williams a Year Up United students, this release focuses on reliability, collaboration, and expandability for open-source contributors.
 
 
-## 💬 “Open-source is the bridge between learning and mastery. Each contribution is one more line of code brewed with passion.”
+## 💬 “Open-source is the bridge between learning and mastery. Each contribution is one more line of code brewed with passion. ☕️”
 — Team Café Java ☕
 
 ---
