@@ -175,7 +175,7 @@ Cafe_Java/
 | “File not found”          | CSV missing             | The app auto-creates `Cafe_Java_Library_Terms.csv` if missing |
 
 ---
-## Screenshots 
+# Screenshots 
 
 <img width="1919" height="1126" alt="Screenshot 2025-10-20 172253" src="https://github.com/user-attachments/assets/992340a6-1e2b-4b8d-9a48-9df6b9a81f0f" />
 <img width="1916" height="1126" alt="Screenshot 2025-10-20 170245" src="https://github.com/user-attachments/assets/fb42234a-8f35-44e4-be94-e5d48a6e789d" />
