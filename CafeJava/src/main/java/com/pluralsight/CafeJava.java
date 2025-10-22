@@ -7,7 +7,7 @@ public class CafeJava {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("\n=============================================");
+        System.out.println("\n=============================================s");
         System.out.println("        ☕ Welcome to Cafe Java!");
         System.out.println("=============================================\n");
 
