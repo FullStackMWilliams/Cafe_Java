@@ -7,9 +7,9 @@ public class CafeJava {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("\n=======================================");
+        System.out.println("\n=============================================");
         System.out.println("        ☕ Welcome to Cafe Java!");
-        System.out.println("=======================================\n");
+        System.out.println("=============================================\n");
 
         while (true) {
             printMainMenu();
@@ -23,7 +23,7 @@ public class CafeJava {
                 case "4" -> displayWorkbooks(TermsLibrary.loadTerms());
                 case "5" -> startTrueFalseQuiz(TermsLibrary.loadTerms());
                 case "6" -> {
-                    System.out.println("\n👋 Thanks for visiting Cafe Java! Keep coding strong!\n");
+                    System.out.println("\n👋 Thanks for visiting Cafe Java! ☕\n");
                     return;
                 }
                 default -> System.out.println("⚠️ Invalid option. Please try again.\n");
